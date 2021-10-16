@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  nikiforovall.api:
+    image: ${REGISTRY:-nikiforovall}/nikiforovall.api:${TAG:-latest}
+    build:
+      context: nikiforovall
+      dockerfile: src/Api/Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5000:80"
+    depends_on:
+      - rabbitmq
+      - postgres
+      - nikiforovall.worker
+
+  nikiforovall.worker:
+    image: ${REGISTRY:-nikiforovall}/nikiforovall.worker:${TAG:-latest}
+    build:
+      context: nikiforovall
+      dockerfile: src/Worker/Dockerfile
+    depends_on:
+      - rabbitmq
+      - postgres
+
+  rabbitmq:
+    image: rabbitmq:3.8-management
+  
+  postgres:
+    image: postgres:14.0

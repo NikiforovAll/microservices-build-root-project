@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  nikiforovall.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - EventStore__ConnectionString=PORT = 5432; HOST = postgres; TIMEOUT = 15; POOLING = True; MINPOOLSIZE = 1; MAXPOOLSIZE = 100; COMMANDTIMEOUT = 20; DATABASE = nikiforovall; PASSWORD = postgres; USER ID = postgres
+
+  nikiforovall.worker:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - RabbitMQConfiguration__Host=rabbitmq
+      - RabbitMQConfiguration__UserName=admin
+      - RabbitMQConfiguration__Password=admin
+      - EventStore__ConnectionString=PORT = 5432; HOST = postgres; TIMEOUT = 15; POOLING = True; MINPOOLSIZE = 1; MAXPOOLSIZE = 100; COMMANDTIMEOUT = 20; DATABASE = nikiforovall; PASSWORD = postgres; USER ID = postgres
+
+  postgres:
+    volumes:
+      - ./build/docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
