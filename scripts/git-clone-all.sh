@@ -1,12 +1,12 @@
 #!/bin/bash
 REPOSITORIES=(
-  "na-ca",
+  "na-ca"
   "na-es"
 )
 
 declare -A FOLDERS=(
-  ["na-ca"]="na-ca"
   ["na-es"]="na-es"
+  ["na-ca"]="na-ca"
 ) 
 
 for REPOSITORY in ${REPOSITORIES[*]}

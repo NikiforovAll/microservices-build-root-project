@@ -13,7 +13,6 @@ services:
     depends_on:
       - rabbitmq
       - postgres
-      - nikiforovall.worker
 
   naca.worker:
     image: ${REGISTRY:-nikiforovall}/nikiforovall.worker:${TAG:-latest}
@@ -36,7 +35,6 @@ services:
     depends_on:
       - rabbitmq
       - postgres
-      - nikiforovall.worker
 
   naes.worker:
     image: ${REGISTRY:-nikiforovall}/nikiforovall.worker:${TAG:-latest}
