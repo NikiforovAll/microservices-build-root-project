@@ -13,7 +13,6 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.8-management
-    # container_name: rabbitmq
     hostname: rabbitmq
     volumes:
       - rabbitmqdata-nikiforovall:/var/lib/rabbitmq
